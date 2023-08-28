@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--跟标签beans，里面配置一个又一个的bean子标签，每一个bean子标签都代表一个类的配置-->
+<beans>
+
+
+    <bean id="dog" class = "com.web.springbootweb.other.proxylearn.Dog">
+
+    </bean>
+
+    <bean id="person" class = "com.web.springbootweb.other.xmlreader.Person">
+        <property name="pat" ref="dog">
+
+        </property>
+    </bean>
+
+
+</beans>
+
