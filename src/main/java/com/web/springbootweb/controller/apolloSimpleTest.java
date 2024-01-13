@@ -1,4 +1,4 @@
-package com.web.springbootweb.controller.apolloTest;
+package com.web.springbootweb.controller;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
