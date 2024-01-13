@@ -22,8 +22,8 @@ public class ApolloKeyListener {
     @Bean
     public ApolloKeyListener setBean(){
 
+        //通过切换 nameSpaces 名称，可以监听不同的命名空间
         Config config = ConfigService.getConfig("application");
-
         config.addChangeListener(new ConfigChangeListener() {
             @Override
             public void onChange(ConfigChangeEvent configChangeEvent) {
