@@ -3,6 +3,7 @@ package com.web.springbootweb.controller;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.core.dto.ApolloConfig;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,12 +27,15 @@ public class apolloSimpleTest {
         String someKey = "testValue";
         String someDefaultValue = "我是默认值";
 
-        for (int i = 0; i < 10; i++) {
-            Thread.sleep(10000);
-            String value = config.getProperty(someKey, someDefaultValue);
-            System.out.println("获取到配置值:"+value);
-        }
+        String value = config.getProperty(someKey, someDefaultValue);
+    }
 
+    @PostMapping("test2")
+    public void test2(){
 
+        //获取不同的命名空间的 key 时，只需要传入不同的 nameSpaces 名称即可
+        Config aSwitch = ConfigService.getConfig("switch");
+        String defaultValue = aSwitch.getProperty("redisson.password", "defaultValue");
+        System.out.println(defaultValue);
     }
 }
