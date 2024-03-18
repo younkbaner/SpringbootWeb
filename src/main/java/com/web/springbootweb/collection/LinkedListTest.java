@@ -1,5 +1,7 @@
 package com.web.springbootweb.collection;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
@@ -51,6 +53,26 @@ public class LinkedListTest {
 
         boolean removeValue3 = linkedList.remove("西游记");
         System.out.println("删除的元素:"+removeValue3);
+
+
+
+
+
+        //实现排序的方法一：使用 Stream 流进行排序
+        linkedList.stream().sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return 0;
+            }
+        });
+
+        //实现排序的方法二：使用 Collections 集合工具类进行排序
+        Collections.sort(linkedList, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return 0;
+            }
+        });
 
 
 

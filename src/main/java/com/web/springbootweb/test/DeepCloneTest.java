@@ -9,6 +9,7 @@ package com.web.springbootweb.test;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -80,7 +81,7 @@ public class DeepCloneTest {
  * 深拷贝代码示例
  */
 @Data
-class Person implements Cloneable {
+class Person implements Cloneable,Comparable<Person> {
     private String name;
     private List<String> hobbies;
 
@@ -103,6 +104,20 @@ class Person implements Cloneable {
                 ", hobbies=" + hobbies +
                 '}';
     }
+
+
+
+    @Override
+    public int compareTo(Person o) {
+        if (this.name.length()>o.name.length()){
+            return -1;
+        }
+        if (this.name.length()<o.name.length()){
+            return 1;
+        }
+
+        return 0;
+    }
 }
 
 
@@ -110,7 +125,7 @@ class Person implements Cloneable {
  * 浅拷贝代码示例
  */
 @Data
-class PersonOther implements Cloneable {
+class PersonOther implements Cloneable, Comparator<PersonOther> {
     private String name;
     private List<String> hobbies;
 
@@ -130,5 +145,16 @@ class PersonOther implements Cloneable {
                 "name='" + name + '\'' +
                 ", hobbies=" + hobbies +
                 '}';
+    }
+
+    @Override
+    public int compare(PersonOther o1, PersonOther o2) {
+        if (o1.name.length()>o2.name.length()){
+            return 1;
+        }
+        if (o1.name.length()>o2.name.length()){
+            return -1;
+        }
+        return 0;
     }
 }
