@@ -4,7 +4,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -17,54 +21,58 @@ import javax.annotation.PreDestroy;
  */
 
 @Component
-public class BeamLifeCircleTest  implements BeanNameAware, BeanPostProcessor,InitializingBean, DisposableBean {
+public class BeamLifeCircleTest  implements BeanNameAware, BeanPostProcessor,InitializingBean, DisposableBean, BeanFactoryPostProcessor {
 
     private String name;
 
     private String age;
 
     public BeamLifeCircleTest() {
-        System.out.println("bean生命周期第一步：实例化 bean 实例");
+        System.out.println("BeamLifeCircleTest:bean生命周期第一步  -->  实例化 bean 实例");
 
     }
 
 
     @Override
     public void setBeanName(String name) {
-        System.out.println("bean生命周期第三步：检查是否实现 Aware 相关接口");
+        System.out.println("BeamLifeCircleTest:bean生命周期第三步  -->  检查是否实现 Aware 相关接口");
     }
 
 
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("bean生命周期第四步：检查是否实现 Aware 相关接口");
+        System.out.println("BeamLifeCircleTest:bean生命周期第四步  -->  检查是否实现 Aware 相关接口");
         return bean;
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("bean生命周期第五步：是否实现InitializingBean接口");
+        System.out.println("BeamLifeCircleTest:bean生命周期第五步  -->  是否实现InitializingBean接口");
 
     }
 
     @PostConstruct
     public void initMethod(){
-        System.out.println("bean生命周期第六步：是否配置自定义 init-method 方法");
+        System.out.println("BeamLifeCircleTest:bean生命周期第六步  -->  是否配置自定义 init-method 方法");
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("bean生命周期第七步：是否配置自定义 init-method 方法");
+        System.out.println("BeamLifeCircleTest:bean生命周期第七步  -->  是否配置自定义 init-method 方法");
         return bean;
     }
 
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("bean生命周期第八步：是否实现 Disposable接口");
+        System.out.println("BeamLifeCircleTest  -->  bean生命周期第八步：是否实现 Disposable接口");
     }
 
     @PreDestroy
     public void destoryMethod(){
-        System.out.println("bean生命周期第九步：是否配置自定义 init-method 方法");
+        System.out.println("BeamLifeCircleTest  -->  bean生命周期第九步：是否配置自定义 init-method 方法");
     }
 
+    @Override
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+        Object ios = configurableListableBeanFactory.getBean("ios");
+    }
 }
