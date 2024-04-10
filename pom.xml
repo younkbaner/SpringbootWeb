@@ -86,6 +86,12 @@
             <artifactId>tika-core</artifactId>
             <version>2.2.1</version>
         </dependency>
+<!--    引入Easy-excel-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>3.0.5</version>
+        </dependency>
 
 
 
