@@ -90,6 +90,10 @@ class Person implements Cloneable,Comparable<Person> {
         this.hobbies = new ArrayList<>(hobbies);
     }
 
+    public Person() {
+
+    }
+
     @Override
     protected Object clone() throws CloneNotSupportedException {
         Person clonedPerson = (Person) super.clone();
