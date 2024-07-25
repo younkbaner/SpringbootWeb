@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+header 页头
+footer Page %page% of %last-page%
+title test first Page
+Alice -> Bob : first
+
+== 第二部分 ==
+Alice <- Bob : second
+
+
+newpage
+Alice -> Bob: second
+
+newpage A title for test last Page
+
+
+
+@enduml

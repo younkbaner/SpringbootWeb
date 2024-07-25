@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+|client|
+:押券融资;
+|Trading-Service|
+
+
+@enduml

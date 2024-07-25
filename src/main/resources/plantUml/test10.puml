@@ -1,0 +1,46 @@
+@startuml
+
+|ITradeDataService|
+start
+:saveTrade();
+|#pink|TradeDataServiceImpl|
+:saveTrade();
+if(是否是交易时段)then(yes)
+else(no)
+:提示非交易时段;
+stop
+endif
+:replaceNote处理换行;
+:processMap.get(tradeType);
+|ITradeDataServiceProcess.443|
+:saveTrade();
+:getDataBOByDataVO获得 boDate;
+:设置自定义交易字段;
+:设置交易指令;
+:设置 boDate.ReferNumber;
+if(portfolioUnderApprovalCheck？) then(yes)
+else(no)
+:该投组在审批中,请审批完成后重试;
+stop
+endif
+:getAutoTradeInfo()获取自动送审交易信息;
+:getTradeDataBusiness()获取处理业务business;
+:数据检查(IRS 曲线权限);
+:保存交易business.saveTrade();
+|ItradeDataBusiness|
+:499.saveTrade();
+|TradeDataBusinessImpl|
+:得到送审备注以及设置是否自动送审;
+:交易保存，审批单保存且发起流程;
+|ITradeBusinessTransaction|
+:saveTradeTransaction;
+|TradeBusinessTransationImpl|
+:saveTradeFlow;
+:数据清洁，数据检查，获取交易序号,保存交易\n库存处理，换券处理，公共字段处理;
+:发送 TBS 消息;
+|TradeBusinessTransationImpl|
+:保存 kafka消息;
+:保存交易指令;
+|ITradeDataServiceProcess.443|
+:发送kafka消息至报价;
+@enduml

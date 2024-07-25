@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Foo1
+boundary Foo2
+control Foo3
+entity Foo4
+database Foo5
+collections Foo6
+queue Foo7
+
+Foo1 -> Foo2:to boundary
+Foo1 -> Foo3:to control
+Foo1 -> Foo4: to entity
+Foo1 -> Foo5: to database
+Foo1 -[#00FF00]> Foo6: to collections
+Foo1 -[#red]> Foo7: to queue
+
+
+@enduml

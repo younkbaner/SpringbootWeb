@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+user -> A:点击功能
+||68||
+note right A : 进行画面数据核验\n 画面数据核验失败\n不进行后面的处理
+activate A
+A-> B : 查询信息
+activate B
+B->C : 查询数据库
+activate C
+C-> B: 返回数据
+deactivate C
+B-> A : 数据计算
+deactivate B
+A-> user : 呈现功能给用户
+note over A,user
+完成处理
+end note
+deactivate A
+@enduml

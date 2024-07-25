@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+Alice -> Bob : first
+Bob --> Alice : second
+Alice -> Bob : three
+Alice <-- Bob : fore
+
+@enduml

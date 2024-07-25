@@ -1,0 +1,24 @@
+@startuml
+start
+
+repeat
+    :读取图片;
+    :生成图片;
+repeat while(识别率达到99.9999?)
+:大量测试;
+:持续测试;
+if(uat测试通过？) then (yes)
+else(no)
+    :取消新版本发布;
+    end
+endif
+->安排开发,测试准备发版;
+:产品发布;
+if(生产验证) then(yes)
+    :发送验证通过邮件;
+else(no)
+    :版本回退;
+endif
+:发版流程结束;
+stop
+@enduml
